@@ -23,7 +23,7 @@ const HomePage: FC = () => {
   const [activeTab, setActiveTab] = useState("SDK and Hosted Flow"); // Default tab is "SDK and Hosted Flow"
   const [responseText, setResponseText] = useState(null);
   const [showResponse, setShowResponse] = useState(false);
-
+  const merchantId =  "9e34f479-b43a-4372-8bdf-90689e16cd5b";
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
 
@@ -436,7 +436,7 @@ const HomePage: FC = () => {
 
   const handleHostedFlowClick = () => {
     const url =
-      "https://onramp-sandbox.gatefi.com/?merchantId=9e34f479-b43a-4372-8bdf-90689e16cd5b&lang=es_PE";
+      `https://onramp-sandbox.gatefi.com/?merchantId=${merchantId}&lang=es_PE`;
     window.open(url, "_blank");
   };
 
