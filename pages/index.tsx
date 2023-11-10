@@ -23,9 +23,10 @@ const HomePage: FC = () => {
   const [activeTab, setActiveTab] = useState("SDK and Hosted Flow"); // Default tab is "SDK and Hosted Flow"
   const [responseText, setResponseText] = useState(null);
   const [showResponse, setShowResponse] = useState(false);
-  const merchantId =  "9e34f479-b43a-4372-8bdf-90689e16cd5b";
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
+  const hostedFlowQueryParam_merchantId =  process.env.NEXT_PUBLIC_PARTNER_ID;
+  const hostedFlowQueryParam_lang = "es_PE";
 
   useEffect(() => {
     return () => {
@@ -64,10 +65,9 @@ const HomePage: FC = () => {
     setWalletAddress(e.target.value);
   };
 
-  let secretkey = "GSLDrYtqLmXDJRHbqtUwDQLwKBbEgPvu";
+  let secretkey = process.env.NEXT_PUBLIC_SECRET_KEY;
   let prodSecretkey = "xx";
-  let webhookSecrerKey = "GrZvMWzQxSrKZIAaeCsBndQCRoZtiyVz";
-
+  let webhookSecrerKey = process.env.NEXT_PUBLIC_WEBHOOK_SECRET_KEY;
   //string will be method + api path
   let dataVerify = "GET" + "/onramp/v1/configuration";
   let dataVerify1 = "GET" + "/onramp/v1/quotes";
@@ -436,7 +436,7 @@ const HomePage: FC = () => {
 
   const handleHostedFlowClick = () => {
     const url =
-      `https://onramp-sandbox.gatefi.com/?merchantId=${merchantId}&lang=es_PE`;
+      `https://onramp-sandbox.gatefi.com/?merchantId=${hostedFlowQueryParam_merchantId}&lang=${hostedFlowQueryParam_lang}&redirectUrl=https://www.sofi.com&backToButtonLabel=Return Metamask`;
     window.open(url, "_blank");
   };
 
