@@ -25,8 +25,10 @@ const HomePage: FC = () => {
   const [showResponse, setShowResponse] = useState(false);
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
-  const hostedFlowQueryParam_merchantId =  process.env.NEXT_PUBLIC_PARTNER_ID;
-  const hostedFlowQueryParam_lang = "es_PE";
+  const hostedFlowSandboxQueryParam_merchantId =  process.env.NEXT_PUBLIC_PARTNER_ID;
+  const hostedFlowSandboxQueryParam_lang = "es_PE";
+  const hostedFlowSandboxQueryParam_redirectUrl = "https://www.sofi.com";
+  const hostedFlowSandboxQueryParam_backToButtonLabel = "Return Metamask";
 
   useEffect(() => {
     return () => {
@@ -436,7 +438,7 @@ const HomePage: FC = () => {
 
   const handleHostedFlowClick = () => {
     const url =
-      `https://onramp-sandbox.gatefi.com/?merchantId=${hostedFlowQueryParam_merchantId}&lang=${hostedFlowQueryParam_lang}&redirectUrl=https://www.sofi.com&backToButtonLabel=Return Metamask`;
+      `https://onramp-sandbox.gatefi.com/?merchantId=${hostedFlowSandboxQueryParam_merchantId}&lang=${hostedFlowSandboxQueryParam_lang}&redirectUrl=${hostedFlowSandboxQueryParam_redirectUrl}&backToButtonLabel=${hostedFlowSandboxQueryParam_backToButtonLabel}`;
     window.open(url, "_blank");
   };
 
