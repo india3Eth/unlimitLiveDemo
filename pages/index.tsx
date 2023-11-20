@@ -67,7 +67,7 @@ const HomePage: FC = () => {
     setWalletAddress(e.target.value);
   };
 
-  let secretkey = process.env.NEXT_PUBLIC_SECRET_KEY;
+  let secretkey = process.env.ENV === "production" ? "": process.env.SANDBOX_SECRET_KEY;
   let prodSecretkey = "xx";
   let webhookSecrerKey = process.env.NEXT_PUBLIC_WEBHOOK_SECRET_KEY;
   //string will be method + api path
@@ -136,6 +136,10 @@ const HomePage: FC = () => {
 
   // Hash the secret key with the data
   function calcAuthSigHash(data, key) {
+    if (key === undefined) {
+      console.error('The key is undefined!');
+      return;
+    }
     const hmac = crypto.createHmac("sha256", key);
     hmac.update(data);
     return hmac.digest("hex");
@@ -150,18 +154,7 @@ const HomePage: FC = () => {
 
   console.log("config prod prod config", calcAuthSigHashProd(dataVerify));
 
-  // console.log('Quotes Sig Test', calcAuthSigHash(dataVerify1))
-  // console.log(calcAuthSigHash(dataVerify2))
-  console.log("get single order", calcAuthSigHashProd(dataVerify3));
-  console.log("API BUY PROD", calcAuthSigHashProd(dataVerify4));
-  console.log("QUOOOTES PROODDDD", calcAuthSigHashProd(dataVerify1));
 
-  // console.log('Prod get quotes',calcAuthSigHashProd(dataVerify1))
-  // console.log('Prod buy Asset',calcAuthSigHashProd(dataVerify4))
-  // console.log('Config Prod',calcAuthSigHashProd(dataVerify))
-
-  console.log("Config Prod", calcAuthSigHashProd(dataVerify));
-  console.log("Get Orders Prod", calcAuthSigHashProd(GetOrdersPath));
 
   let signatureConfig = calcAuthSigHash(dataVerify, secretkey);
   let signature = calcAuthSigHash(dataVerify4, secretkey);
