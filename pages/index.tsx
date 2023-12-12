@@ -342,6 +342,7 @@ const HomePage: FC = () => {
       overlayInstanceSDK.current = new GateFiSDK({
         merchantId: "9e34f479-b43a-4372-8bdf-90689e16cd5b",
         displayMode: GateFiDisplayModeEnum.Overlay,
+        // lang:GateFiLangEnum.pt_Br,
         nodeSelector: "#overlay-button",
         isSandbox: true,
         walletAddress: "0xb43Ae6CC2060e31790d5A7FDAAea828681a9bB4B",
