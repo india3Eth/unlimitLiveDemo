@@ -401,21 +401,24 @@ const createEmbedSdkInstance = () => {
     const randomString = require('crypto').randomBytes(32).toString('hex');
 
     embedInstanceSDK.current = typeof document !== 'undefined' && new GateFiSDK({
-        merchantId: "9e34f479-b43a-4372-8bdf-90689e16cd5b",
-        displayMode: GateFiDisplayModeEnum.Embedded,
-        nodeSelector: "#embed-button",
-        isSandbox: true,
-        walletAddress: "0xb43Ae6CC2060e31790d5A7FDAAea828681a9bB4B",
-        email: "test@tester.com",
-        externalId: randomString,
-        defaultFiat: {
-            currency: "USD",
-            amount: "30",
-        },
-        defaultCrypto: {
-            currency: "ETH"
-        },
-    })
+      merchantId:"ed6820d0-49d1-4031-90cc-335c03db4286",
+      displayMode: GateFiDisplayModeEnum.Embedded,
+      nodeSelector:"#embed-button",
+      isSandbox:true,
+      walletAddress:"0x8e75f9dB7894B5211D774DDf8f500149cdced3A4",
+      email:"recursingnoether2@ysosirius.com",
+      walletLock:true,
+      cancelUrl:"https://www.coinw.com/zh_CN/p2p-trading/express/buy",
+      successUrl:"https://www.coinw.com/zh_CN/p2p-trading/express/buy",
+      cryptoCurrencyLock:true,
+      fiatCurrencyLock:true,
+      declineUrl:"https://www.coinw.com/zh_CN/p2p-trading/express/buy",
+      defaultCrypto:{currency:"USDT-BEP20"},
+      defaultFiat:{currency:"EUR",amount:"100"},
+      availableCrypto:["USDT-BEP20"],
+      availableFiat:["EUR"],
+      styles:{"type":"light"}}
+    )
 }
 
 const handleOnClickEmbed = () => {
